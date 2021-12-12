@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8">
+
+	<!-- Bootstrapの設定_webjars -->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}">
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+	<div th:fragment="index_contents">
+		<div class="index text-center">
+			<h2>アウトプット一覧</h2>
+			<table class="table table-dark table-bordered table-hover table-striped"  th:each="out : ${outList}">
+				<tr>
+					<td class="text-left" th:text="${#dates.format(out.outDate, 'yyyy/MM/dd')} + ' にアウトプット'">日付</td>
+				</tr>
+				<tr>
+					<td class="text-left" th:text="${out.outTitle}">タイトル</td>
+				</tr>
+				<tr>
+					<td class="text-left" th:text="${out.outSummary}">要約</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.cornellnote.domain.repository.mybatis.CornellnoteMapper2">
+
+	<!-- マッピング定義(アウトプット) -->
+	<resultMap type="com.example.cornellnote.domain.model.Output" id="Output">
+		<id		column="out_id"		  property="outId" />
+		<result column="user_name"	  property="userName" />	<!-- 「usersテーブル」 -->
+		<result column="out_date"	  property="outDate" />
+		<result column="out_title"	  property="outTitle" />
+		<result column="out_summary"  property="outSummary" />
+		<collection property ="contentList" resultMap ="Content" columnPrefix ="content_"/>
+	</resultMap>
+
+	<!-- マッピング定義(コンテンツ(内容)) -->
+	<resultMap type="com.example.cornellnote.domain.model.Content" id="Content">
+		<id		column="out_id"		  property="outId" />
+		<result column="cont_caption" property="contCaption" />
+		<result column="cont_content" property="contContent" />
+	</resultMap>
+
+	<!-- メソッドとの紐付け -->
+		<!-- アウトプット一覧画面表示用 -->
+		<select id="outputList" resultMap="Output">
+			SELECT	  outputs.out_id, users.user_name, outputs.out_date, outputs.out_title, outputs.out_summary, contents.cont_caption as content_cont_caption, contents.cont_content as content_cont_content
+			FROM	  outputs
+			LEFT JOIN contents
+			ON		  outputs.out_id = contents.out_id
+			LEFT JOIN users
+			ON		  outputs.user_id = users.user_id
+			ORDER BY  outputs.out_date DESC;
+		</select>
+</mapper>

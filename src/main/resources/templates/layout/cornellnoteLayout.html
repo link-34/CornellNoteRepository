@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8">
+
+	<!-- Bootstrapの設定 -->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}">
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+
+	<!-- CSSの設定 -->
+	<link th:href="@{/css/layout.css}" rel="stylesheet"></link>
+
+	<title>レビュつぶ</title>
+</head>
+<body class="body_all">
+    <div class="container-fuild">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="side">
+                    <br>
+                    <div class="text-center">
+                    	<a th:href="@{'/karioki'}"><img class="logo" th:src="@{/image/title_logo.png}"></a>
+					</div>
+					<br>
+                    <p class="side_top"><img class="icon" th:src="@{/icon/pencil-square.svg}">アウトプット(投稿)</p>
+                    <div class="side_top">テキストボックス(仮)</div>
+                    <div class="side_top side_top_search"><img class="icon" th:src="@{/icon/search.svg}">検索</div>
+					<br>
+					<br>
+					<br>
+                    <div class="side_bottom"><img class="icon" th:src="@{/icon/person-fill.svg}">テストユーザー さん</div>
+                    <div class="side_bottom"><img class="icon" th:src="@{/icon/box-arrow-right.svg}">ログアウト</div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+            	<!-- メインコンテンツ -->
+				<div th:include="__${contents}__"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
