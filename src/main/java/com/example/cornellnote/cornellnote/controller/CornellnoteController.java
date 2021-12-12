@@ -30,6 +30,8 @@ public class CornellnoteController {
 		List<Output> outList = cornellnoteService.outputList();
 		model.addAttribute("outList", outList);
 
+			System.out.println(outList);
+
 		return "layout/cornellnoteLayout";
 	}
 
