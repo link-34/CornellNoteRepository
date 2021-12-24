@@ -20,5 +20,10 @@ public class CornellnoteService {
 	public List<Output> outputList() {
 		return cornellnoteMapper2.outputList();
 	}
+	
+	// アウトプット「更新」画面表示用
+	public Output outputEdit(int outId) {
+		return cornellnoteMapper2.outputEdit(outId);
+	}
 
 }

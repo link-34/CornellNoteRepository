@@ -5,10 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.cornellnote.domain.model.Output;
+import com.example.cornellnote.domain.model.OutputForm;
 import com.example.cornellnote.domain.service.CornellnoteService;
 
 @Controller
@@ -30,9 +34,27 @@ public class CornellnoteController {
 		List<Output> outList = cornellnoteService.outputList();
 		model.addAttribute("outList", outList);
 
-			System.out.println(outList);
-
 		return "layout/cornellnoteLayout";
 	}
-
+	
+	// アウトプット「更新」画面表示用GETコントローラー
+	@GetMapping("/edit/{id}")
+	public String getOutputDetail(@ModelAttribute OutputForm form, Model model, @PathVariable("id") int outId) {
+		
+		model.addAttribute("contents", "cornellnote/edit :: edit_contents");
+		
+		// 「アウトプット」情報の取得（「outId」を使用）
+		Output output = cornellnoteService.outputEdit(outId);
+		// OutputクラスをOutputFormクラスに変換
+		form.setOutTitle(output.getOutTitle());			// タイトル
+		form.setOutSummary(output.getOutSummary());		// 要約
+		form.setContentList(output.getContentList());	// 見出しと内容
+		model.addAttribute("outputForm", form);
+		
+		// 「outId」をModelに登録 (更新時に使用するため)
+		model.addAttribute("outId", outId);
+		
+		return "layout/cornellnoteLayout";
+	}
+	
 }

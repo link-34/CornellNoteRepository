@@ -24,12 +24,6 @@
 			margin-left: 5em;
 			margin-right: 5em;
         }
-        .edit {
-        	margin-top: 1em;
-			margin-bottom: 1em;
-			margin-left: 5em;
-			margin-right: 5em;
-        }
         .side_top {
         	font-size: 1.2em;
         	color: #FFFFFF;
@@ -41,11 +35,4 @@
 			color: #FFFFFF;
 			margin-bottom: 4px;
         	background-color: #005A8F;
-        }
-        .logout-btn {
-        	font-size: 1em;
-        	color: #FFFFFF;
-        }
-        .caption {
-        	margin: 10px;
         }

@@ -31,14 +31,4 @@
 			ON		  outputs.user_id = users.user_id
 			ORDER BY  outputs.out_date DESC;
 		</select>
-		
-		<!-- アウトプット「更新」画面表示用 -->
-		<select id="outputEdit" resultMap="Output">
-			SELECT		outputs.out_id, outputs.out_title, outputs.out_summary, contents.cont_caption as content_cont_caption, contents.cont_content as content_cont_content
-			FROM		outputs
-			LEFT JOIN	contents
-			ON			outputs.out_id = contents.out_id
-			WHERE		outputs.out_id = #{outId};
-		</select>
-		
 </mapper>

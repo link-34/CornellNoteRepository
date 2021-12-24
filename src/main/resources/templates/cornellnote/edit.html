@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8">
+	
+	<!-- Bootstrapの設定_webjars -->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}">
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+	
+</head>
+<body>
+	<div th:fragment="edit_contents">
+		<div class="edit">
+			<h2 class="text-center">学習内容の詳細</h2>
+			
+			<form  method="post" th:action="@{/cornellnote/edit}" th:object="${outputForm}">
+					
+				<!-- エラー内容の表示-->
+				<ul class="text-center">
+					<li th:each="error : ${#fields.detailedErrors()}">
+						<span th:text="${error.message}">Error message</span>
+					</li>
+				</ul>
+				<br>
+					
+				タイトル
+				<input type="text" class="form-control" size="100" th:field="*{outTitle}">
+				<br>
+					
+				見出し／内容
+				<br>
+				<div th:each="item: *{contentList}">
+					<!-- 見出し/内容 -->
+					<div class="form-inline">
+						<textarea rows="3" cols="50" class="form-control caption" th:text="${item.contCaption}"></textarea>
+						<textarea rows="3" cols="50" class="form-control" th:text="${item.contContent}"></textarea>
+					</div>
+				</div>
+				<br>
+					
+				要約 (140字まで／箇条書きを推奨)
+				<textarea rows="3" cols="100" class="form-control" th:field="*{outSummary}"></textarea>
+				<br>
+					
+				<!-- 学習内容の更新ボタン/削除ボタン -->
+				<div class="text-center">
+					<button class="btn btn-primary mr-5" type="submit" name="edit" th:value="${outId}">
+						更新
+					</button>
+					<button class="btn btn-primary ml-5" type="submit" name="delete">
+						削除
+					</button>
+				</div>
+					
+			</form>
+		</div>
+	</div>
+</body>
+</html>

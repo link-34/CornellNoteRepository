@@ -11,4 +11,8 @@ public interface CornellnoteMapper2 {
 
 	// 「outputsテーブル」と「contentsテーブル」を左外部結合をして全件SELECT
 	public List<Output> outputList();
+	
+	// 「outputsテーブル」と「contentsテーブル」を左外部結合をして1件SELECT
+	public Output outputEdit(int outId);
+	
 }

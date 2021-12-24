@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+
+	<!-- Bootstrapの設定_webjars -->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}">
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+
+	<title>ログイン</title>
+</head>
+<body class="text-center">
+
+	<br>
+	<img class="logo" th:src="@{/image/title_logo.png}">
+
+	<br>
+	<br>
+	<h3>ログイン</h3>
+
+	<br>
+	<form method="post" th:action="@{/cornellnote/index}" class=" text-center">
+
+		<p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" class="text-danger">
+			ログインエラーメッセージ
+		</p>
+
+		<label>ユーザー名</label> <input type="text" name="userId"><br>
+		<br>
+		<label>パスワード</label> <input type="password" name="password"><br>
+		<br>
+		<button class="btn btn-primary" type="submit">ログイン</button>
+	</form>
+
+	<br>
+	<a th:href="@{/login/signup}">ユーザーの新規登録画面へ</a>
+</body>
+</html>

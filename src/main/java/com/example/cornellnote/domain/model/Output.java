@@ -8,8 +8,8 @@ import lombok.Data;
 @Data
 public class Output {
 
-	private int			outId;			// ID
-	private int			userId;			// ユーザーID
+	private int				outId;			// ID
+	private int				userId;			// ユーザーID
 	private String			userName;		// ユーザー名
 	private Date			outDate;		// アウトプット日時
 	private String			outTitle;		// タイトル

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	
+	<!-- Bootstrapの設定_webjars -->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}">
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+
+	<!-- CSSの設定 -->
+	<link th:href="@{/css/layout.css}" rel="stylesheet"></link>
+	
+	<title>エラー</title>
+</head>
+<body>
+	<br>
+	<br>
+	<div class="text-center">
+		<h1 th:text="${status} + ' ' + ${error}"></h1>
+		<p th:text="${message}"></p>
+		<p>申し訳ございません。エラーが発生しました。</p>
+	</div>
+	<form class="text-center" method="post" th:action="@{/login/logout}">
+		<button class="btn btn-primary" type="submit">ログイン画面に戻る</button>
+	</form>
+</body>
+</html>
