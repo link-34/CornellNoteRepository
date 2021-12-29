@@ -11,14 +11,11 @@
 	<title>ログイン</title>
 </head>
 <body class="text-center">
-
+	
 	<br>
 	<img class="logo" th:src="@{/image/title_logo.png}">
-
 	<br>
-	<br>
-	<h3>ログイン</h3>
-
+	
 	<br>
 	<form method="post" th:action="@{/cornellnote/index}" class=" text-center">
 
@@ -26,9 +23,9 @@
 			ログインエラーメッセージ
 		</p>
 
-		<label>ユーザー名</label> <input type="text" name="userId"><br>
+		<label>ユーザー名</label> <input type="text" name="userName"><br>
 		<br>
-		<label>パスワード</label> <input type="password" name="password"><br>
+		<label>パスワード</label> <input type="password" name="userPass"><br>
 		<br>
 		<button class="btn btn-primary" type="submit">ログイン</button>
 	</form>

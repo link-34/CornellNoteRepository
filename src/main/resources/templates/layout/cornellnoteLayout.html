@@ -20,15 +20,17 @@
                 <div class="side">
                     <br>
                     <div class="text-center">
-                    	<a th:href="@{'/karioki'}"><img class="logo" th:src="@{/image/title_logo.png}"></a>
+                    	<a th:href="@{/cornellnote/index}"><img class="logo" th:src="@{/image/title_logo.png}"></a>
 					</div>
 					
 					<br>
+					<div class="side_top">
+						<img class="icon" th:src="@{/icon/pencil-square.svg}">
+						<a class="btn btn-outline-light side_top" th:href="@{/cornellnote/entry}">
+							アウトプット(投稿)
+						</a>
+					</div>
 					
-                    <p class="side_top">
-                    	<img class="icon" th:src="@{/icon/pencil-square.svg}">
-                    	アウトプット(投稿)
-                    </p>
                     <div class="side_top">
                     	テキストボックス(仮)
                     </div>
@@ -48,7 +50,7 @@
 					<form method="post" th:action="@{/login/logout}">
 						<div class="side_bottom">
 							<img class="icon" th:src="@{/icon/box-arrow-right.svg}">
-							<button class="btn btn-outline-primary logout-btn" type="submit">ログアウト</button>
+							<button class="btn btn-outline-primary logout-btn side_bottom" type="submit">ログアウト</button>
 						</div>
 					</form>
                 </div>
