@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.cornellnote.domain.repository.mybatis.CornellnoteMapper3">
+	<!-- メソッドとの紐付け -->
+		<!-- アウトプット「登録」処理用(「contentsテーブル」) -->
+		<insert id="outputRegister" parameterType="java.util.List">
+			INSERT INTO contents(out_id, cont_caption, cont_content)
+				   VALUES			   
+					<foreach collection="contentList" item="list" separator=",">
+						(
+							#{list.outId},
+							#{list.contCaption},
+							#{list.contContent}
+						)
+					</foreach>;
+		</insert>
+		
+</mapper>

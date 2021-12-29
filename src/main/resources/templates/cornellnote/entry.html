@@ -16,10 +16,11 @@
 			
 			<form  method="post" th:action="@{/cornellnote/entry}" th:object="${outputForm}">
 				
+				<br>
 				<!-- エラー内容の表示-->
-				<ul class="text-center">
+				<ul>
 					<li th:each="error : ${#fields.detailedErrors()}">
-						<span th:text="${error.message}">Error message</span>
+						<span class="text-danger" th:text="${error.message}">Error message</span>
 					</li>
 				</ul>
 				<br>
@@ -31,16 +32,16 @@
 				見出し／内容
 				<br>
 				<div class="form-inline">
-					<textarea rows="3" cols="50" class="form-control caption" th:text="${contCaption1}"></textarea>
-					<textarea rows="3" cols="50" class="form-control"		  th:text="${contContent1}"></textarea>
+					<textarea rows="3" cols="50" class="form-control caption" th:field="*{contCaption1}"></textarea>
+					<textarea rows="3" cols="50" class="form-control"		  th:field="*{contContent1}"></textarea>
 				</div>
 				<div class="form-inline">	
-					<textarea rows="3" cols="50" class="form-control caption" th:text="${contCaption2}"></textarea>
-					<textarea rows="3" cols="50" class="form-control" 		  th:text="${contContent3}"></textarea>
+					<textarea rows="3" cols="50" class="form-control caption" th:field="*{contCaption2}"></textarea>
+					<textarea rows="3" cols="50" class="form-control" 		  th:field="*{contContent3}"></textarea>
 				</div>
 				<div class="form-inline">	
-					<textarea rows="3" cols="50" class="form-control caption" th:text="${contCaption3}"></textarea>
-					<textarea rows="3" cols="50" class="form-control" 		  th:text="${contContent3}"></textarea>
+					<textarea rows="3" cols="50" class="form-control caption" th:field="*{contCaption3}"></textarea>
+					<textarea rows="3" cols="50" class="form-control" 		  th:field="*{contContent3}"></textarea>
 				</div>
 				<br>
 					

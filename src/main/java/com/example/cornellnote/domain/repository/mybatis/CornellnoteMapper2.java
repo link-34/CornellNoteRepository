@@ -15,4 +15,13 @@ public interface CornellnoteMapper2 {
 	// 「outputsテーブル」と「contentsテーブル」を左外部結合をして1件SELECT
 	public Output outputEdit(int outId);
 	
+	// 「outputsテーブル」で1件SELECT
+	public int registerUserId(String userName);
+	
+	// 「outputsテーブル」で1件SELECT
+	public int registerOutId();
+	
+	// 「outputsテーブル」へ1件INSERT
+	public boolean outputRegister(Output output);
+	
 }

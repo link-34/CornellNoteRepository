@@ -5,7 +5,8 @@ import lombok.Data;
 @Data
 public class Content {
 
-	private int    outId;			// ID
-	private String contCaption;		// 見出し
-	private String contContent;		// 内容
+	private int				outId;				// ID
+	private String			contCaption;		// 見出し
+	private String			contContent;		// 内容
+	
 }

@@ -1,6 +1,7 @@
 package com.example.cornellnote.cornellnote.controller;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.cornellnote.domain.model.Content;
 import com.example.cornellnote.domain.model.Output;
 import com.example.cornellnote.domain.model.OutputForm;
 import com.example.cornellnote.domain.service.CornellnoteService;
@@ -63,21 +65,54 @@ public class CornellnoteController {
 		// 現在のログインユーザー名をSpringセキュリティで取得
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String userName = auth.getName();
-		// ユーザーIDを取得
-		// selectでDBから検索する処理を追加
+		// 現在のログインユーザーのユーザーIDを取得
+		int registerUserId = cornellnoteService.registerUserId(userName);
 		
 		// アウトプット日時(本日の日付)を取得
-		LocalDateTime nowDateTime = LocalDateTime.now();
+		Date registerDate = new Date();
 		
-		// 最新の「outId」を取得
-		// selectでDBから検索する処理を追加
+		// 新規登録で割り当てられる「outId」を取得
+		// 最新の「outId」を取得後に「+ 1」して得る
+		int registerOutId = cornellnoteService.registerOutId() + 1;
 		
-		// 「Content」へフォーム画面の入力値を挿入
-		// その際、上記で取得した「outId + 1」も「Content」へ挿入
+		// 「OutputForm」クラスの値を各「Content」の組(対となる見出しと内容)に格納
+		// その際、上記で取得した「registerOutId」も合わせて格納
+		Content content1 = new Content();
+		content1.setOutId(registerOutId);
+		content1.setContCaption(form.getContCaption1());
+		content1.setContContent(form.getContContent1());
 		
-		// 「Output」へフォーム画面の入力値を挿入
+		Content content2 = new Content();
+		content2.setOutId(registerOutId);
+		content2.setContCaption(form.getContCaption2());
+		content2.setContContent(form.getContContent2());
+		
+		Content content3 = new Content();
+		content3.setOutId(registerOutId);
+		content3.setContCaption(form.getContCaption3());
+		content3.setContContent(form.getContContent3());
+		
+		// 各「Content」の組(対となる見出しと内容)をListに格納
+		List<Content> contentList = new ArrayList<>();
+		contentList.add(content1);
+		contentList.add(content2);
+		contentList.add(content3);
+		
+		// 「OutputForm」クラスをOutputクラスに変換
+		Output output = new Output();
+		output.setOutId(registerOutId);
+		output.setUserId(registerUserId);
+		output.setOutDate(registerDate);
+		output.setOutTitle(form.getOutTitle());
+		output.setOutSummary(form.getOutSummary());
 		
 		// 登録処理
+		boolean result = cornellnoteService.outputRegister(output, contentList);
+		if(result==true) {
+			System.out.println("登録成功！");
+		} else if(result==false) {
+			System.out.println("登録失敗…");
+		}
 		
 		return "redirect:/cornellnote/index";
 		
@@ -91,7 +126,7 @@ public class CornellnoteController {
 		
 		// 「アウトプット」情報の取得（「outId」を使用）
 		Output output = cornellnoteService.outputEdit(outId);
-		// OutputクラスをOutputFormクラスに変換
+		// Outputクラスを「OutputForm」クラスに変換
 		form.setOutTitle(output.getOutTitle());			// タイトル
 		form.setOutSummary(output.getOutSummary());		// 要約
 		form.setContentList(output.getContentList());	// 見出しと内容

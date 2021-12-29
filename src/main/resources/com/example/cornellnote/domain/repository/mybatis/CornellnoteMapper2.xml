@@ -29,16 +29,35 @@
 			ON		  outputs.out_id = contents.out_id
 			LEFT JOIN users
 			ON		  outputs.user_id = users.user_id
-			ORDER BY  outputs.out_date DESC;
+			ORDER BY  outputs.out_id DESC;
 		</select>
 		
 		<!-- アウトプット「更新」画面表示用 -->
 		<select id="outputEdit" resultMap="Output">
-			SELECT		outputs.out_id, outputs.out_title, outputs.out_summary, contents.cont_caption as content_cont_caption, contents.cont_content as content_cont_content
-			FROM		outputs
-			LEFT JOIN	contents
-			ON			outputs.out_id = contents.out_id
-			WHERE		outputs.out_id = #{outId};
+			SELECT	  outputs.out_id, outputs.out_title, outputs.out_summary, contents.cont_caption as content_cont_caption, contents.cont_content as content_cont_content
+			FROM	  outputs
+			LEFT JOIN contents
+			ON		  outputs.out_id = contents.out_id
+			WHERE	  outputs.out_id = #{outId};
 		</select>
+		
+		<!-- アウトプット「登録」処理に使用する「userId」取得用 -->
+		<select id="registerUserId" parameterType="string" resultType="int">
+			SELECT	  user_id
+			FROM	  users
+			WHERE	  users.user_name = #{userName};
+		</select>
+		
+		<!-- アウトプット「登録」処理に使用する最新の「outId」取得用 -->
+		<select id="registerOutId" resultType="int">
+			SELECT	  MAX(out_id)
+			FROM	  outputs;
+		</select>
+		
+		<!-- アウトプット「登録」処理用(「outputsテーブル」) -->
+		<insert id="outputRegister" parameterType="com.example.cornellnote.domain.model.Output">
+			INSERT INTO outputs (out_id,   user_id,   out_date,   out_title,   out_summary)
+			VALUES			    (#{outId}, #{userId}, #{outDate}, #{outTitle}, #{outSummary});
+		</insert>
 		
 </mapper>
