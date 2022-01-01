@@ -22,8 +22,8 @@ public class CornellnoteService {
 	CornellnoteMapper3 cornellnoteMapper3;
 
 	// アウトプット一覧画面表示用
-	public List<Output> outputList() {
-		return cornellnoteMapper2.outputList();
+	public List<Output> outputList(int registerUserId) {
+		return cornellnoteMapper2.outputList(registerUserId);
 	}
 	
 	// アウトプット「更新」画面表示用
@@ -48,6 +48,42 @@ public class CornellnoteService {
 		boolean outputRegisterResult3 = cornellnoteMapper3.outputRegister(contentList);
 		
 		if(outputRegisterResult2 && outputRegisterResult3) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	// アウトプット「更新」更新処理用(「outputsテーブル」/「contentsテーブル」へのUPDATE)
+	// 「contentsテーブル」へのUPDATEは、応急策として「DELETE⇒INSERT」する仕様としている
+	public boolean outputUpdate(Output output, List<Content> contentList) {
+		
+		boolean outputUpdateResult2 = cornellnoteMapper2.outputUpdate(output);
+		
+		boolean deleteResult = cornellnoteMapper3.outputUpdateDelete(output);
+		boolean insertResult = cornellnoteMapper3.outputUpdateInsert(contentList);
+		
+		if(deleteResult && insertResult) {
+			boolean outputUpdateResult3 = true;
+			if(outputUpdateResult2 && outputUpdateResult3) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+		
+	}
+	
+	// アウトプット「更新」削除処理用(「outputsテーブル」/「contentsテーブル」へのDELETE)
+	public boolean outputDelete(int outId) {
+		
+		// 外部キー制約があるので、子(FOREIGN KEY)を削除してから親(PRIMARY KEY)を削除する
+		boolean outputDeleteResult3 = cornellnoteMapper3.outputDelete(outId);		// 子(FOREIGN KEY)
+		boolean outputDeleteResult2 = cornellnoteMapper2.outputDelete(outId);		// 親(PRIMARY KEY)
+		
+		if(outputDeleteResult2 && outputDeleteResult3) {
 			return true;
 		} else {
 			return false;

@@ -22,13 +22,14 @@
 
 	<!-- メソッドとの紐付け -->
 		<!-- アウトプット一覧画面表示用 -->
-		<select id="outputList" resultMap="Output">
+		<select id="outputList" parameterType="int" resultMap="Output">
 			SELECT	  outputs.out_id, users.user_name, outputs.out_date, outputs.out_title, outputs.out_summary, contents.cont_caption as content_cont_caption, contents.cont_content as content_cont_content
 			FROM	  outputs
 			LEFT JOIN contents
 			ON		  outputs.out_id = contents.out_id
 			LEFT JOIN users
 			ON		  outputs.user_id = users.user_id
+			WHERE	  users.user_id = #{registerUserId}
 			ORDER BY  outputs.out_id DESC;
 		</select>
 		
@@ -59,5 +60,18 @@
 			INSERT INTO outputs (out_id,   user_id,   out_date,   out_title,   out_summary)
 			VALUES			    (#{outId}, #{userId}, #{outDate}, #{outTitle}, #{outSummary});
 		</insert>
+		
+		<!-- アウトプット「更新」処理用(「outputsテーブル」) -->
+		<update id="outputUpdate" parameterType="com.example.cornellnote.domain.model.Output">
+			UPDATE	  outputs
+			SET		  out_title = #{outTitle}, out_summary = #{outSummary}
+			WHERE	  out_id = #{outId};
+		</update>
+		
+		<!-- アウトプット「削除」処理用(「outputsテーブル」) -->
+		<delete id="outputDelete" parameterType="int">
+			DELETE FROM outputs
+			WHERE out_id = #{outId};
+		</delete>
 		
 </mapper>

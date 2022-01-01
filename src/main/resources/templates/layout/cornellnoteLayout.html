@@ -26,7 +26,7 @@
 					<br>
 					<div class="side_top">
 						<img class="icon" th:src="@{/icon/pencil-square.svg}">
-						<a class="btn btn-outline-light side_top" th:href="@{/cornellnote/entry}">
+						<a class="btn btn-outline-primary side_top" th:href="@{/cornellnote/entry}">
 							アウトプット(投稿)
 						</a>
 					</div>
@@ -45,7 +45,9 @@
 					
                     <div class="side_bottom">
                     	<img class="icon" th:src="@{/icon/person-fill.svg}">
-                    	テストユーザー さん
+                    	<a class="btn btn-outline-primary side_bottom" th:href="@{/login/signup}" th:text="${userName} + ' さん'">
+                    		テストユーザー さん
+                    	</a>
                     </div>
 					<form method="post" th:action="@{/login/logout}">
 						<div class="side_bottom">

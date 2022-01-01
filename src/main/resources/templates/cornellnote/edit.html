@@ -15,11 +15,12 @@
 			<h2 class="text-center">学習内容の詳細</h2>
 			
 			<form  method="post" th:action="@{/cornellnote/edit}" th:object="${outputForm}">
-					
+				
+				<br>
 				<!-- エラー内容の表示-->
-				<ul class="text-center">
+				<ul>
 					<li th:each="error : ${#fields.detailedErrors()}">
-						<span th:text="${error.message}">Error message</span>
+						<span class="text-danger" th:text="${error.message}">Error message</span>
 					</li>
 				</ul>
 				<br>
@@ -27,14 +28,20 @@
 				タイトル
 				<input type="text" class="form-control" size="100" th:field="*{outTitle}">
 				<br>
-					
+				
 				見出し／内容
 				<br>
-				<div th:each="item: *{contentList}">
-					<div class="form-inline">
-						<textarea rows="3" cols="50" class="form-control caption" th:text="${item.contCaption}"></textarea>
-						<textarea rows="3" cols="50" class="form-control" th:text="${item.contContent}"></textarea>
-					</div>
+				<div class="form-inline">
+					<textarea rows="3" cols="50" class="form-control caption" th:field="*{contCaption1}"></textarea>
+					<textarea rows="3" cols="50" class="form-control"		  th:field="*{contContent1}"></textarea>
+				</div>
+				<div class="form-inline">	
+					<textarea rows="3" cols="50" class="form-control caption" th:field="*{contCaption2}"></textarea>
+					<textarea rows="3" cols="50" class="form-control" 		  th:field="*{contContent2}"></textarea>
+				</div>
+				<div class="form-inline">	
+					<textarea rows="3" cols="50" class="form-control caption" th:field="*{contCaption3}"></textarea>
+					<textarea rows="3" cols="50" class="form-control" 		  th:field="*{contContent3}"></textarea>
 				</div>
 				<br>
 					
@@ -44,10 +51,10 @@
 					
 				<!-- 学習内容の更新ボタン/削除ボタン -->
 				<div class="text-center">
-					<button class="btn btn-primary mr-5" type="submit" name="edit" th:value="${outId}">
+					<button class="btn btn-primary mr-5" type="submit" name="update" th:value="${outId}">
 						更新
 					</button>
-					<button class="btn btn-primary ml-5" type="submit" name="delete">
+					<button class="btn btn-primary ml-5" type="submit" name="delete" th:value="${outId}">
 						削除
 					</button>
 				</div>

@@ -10,7 +10,7 @@ import com.example.cornellnote.domain.model.Output;
 public interface CornellnoteMapper2 {
 
 	// 「outputsテーブル」と「contentsテーブル」を左外部結合をして全件SELECT
-	public List<Output> outputList();
+	public List<Output> outputList(int registerUserId);
 	
 	// 「outputsテーブル」と「contentsテーブル」を左外部結合をして1件SELECT
 	public Output outputEdit(int outId);
@@ -23,5 +23,11 @@ public interface CornellnoteMapper2 {
 	
 	// 「outputsテーブル」へ1件INSERT
 	public boolean outputRegister(Output output);
+	
+	// 「outputsテーブル」へ1件UPDATE
+	public boolean outputUpdate(Output output);
+	
+	// 「outputsテーブル」へ1件DELETE
+	public boolean outputDelete(int outId);
 	
 }
