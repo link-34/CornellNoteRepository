@@ -33,7 +33,8 @@ public class CornellnoteController {
 	// アウトプット一覧画面表示用GETコントローラー
 	@GetMapping("/index")
 	public String getOutputList(Model model) {
-
+		
+		// コンテンツ部分にアウトプット一覧画面を表示するための文字列を登録
 		model.addAttribute("contents", "cornellnote/index :: index_contents");
 		
 		// 現在のログインユーザー名をSpringセキュリティで取得
@@ -55,6 +56,7 @@ public class CornellnoteController {
 	@GetMapping("/entry")
 	public String getOutputRegister(@ModelAttribute OutputForm form, Model model) {
 		
+		// コンテンツ部分にアウトプット「登録」画面を表示するための文字列を登録
 		model.addAttribute("contents", "cornellnote/entry :: entry_contents");
 		
 		return "layout/cornellnoteLayout";
@@ -130,6 +132,7 @@ public class CornellnoteController {
 	@GetMapping("/edit/{id}")
 	public String getOutputDetail(@ModelAttribute OutputForm form, Model model, @PathVariable("id") int outId) {
 		
+		// コンテンツ部分にアウトプット「更新」画面を表示するための文字列を登録
 		model.addAttribute("contents", "cornellnote/edit :: edit_contents");
 		
 		// 現在のログインユーザー名をSpringセキュリティで取得
@@ -238,5 +241,41 @@ public class CornellnoteController {
 		
 	}
 	
+	// アウトプット「検索結果」画面表示用GETコントローラー
+	@GetMapping(value = "/search", params = "search")
+	public String getOutputSearch(@RequestParam("searchName")String searchName, Model model) {
+		
+		// コンテンツ部分にアウトプット「検索結果」画面を表示するための文字列を登録
+		model.addAttribute("contents", "cornellnote/search :: search_contents");
+		
+		// 現在のログインユーザー名をSpringセキュリティで取得
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String userName = auth.getName();
+		model.addAttribute("userName", userName);
+		// 現在のログインユーザーのユーザーIDを取得
+		int registerUserId = cornellnoteService.registerUserId(userName);
+		
+		// 検索ワードをModelへの登録 (検索窓へ検索文字を表示のため)
+		model.addAttribute("searchName", searchName);
+		
+		// 「Output」クラスへ「検索ワード」と「ユーザーID」を格納
+		Output output = new Output();
+		output.setUserId(registerUserId);
+		output.setSearchName(searchName);
+		
+		// 検索結果の一覧の生成
+		List<Output> searchResultList = cornellnoteService.outputSearch(output);
+		model.addAttribute("searchResultList", searchResultList);
+		
+		return "layout/cornellnoteLayout";
+		
+	}
+	
+	// アウトプット「検索結果」から一覧画面へ戻る用GETコントローラー(リダイレクト)
+	@GetMapping(value = "/search", params = "back")
+	public String getOutputSearchBack() {
+		// 検索結果の一覧からアウトプット一覧画面へリダイレクト
+		return "redirect:/cornellnote/index";
+	}
 	
 }

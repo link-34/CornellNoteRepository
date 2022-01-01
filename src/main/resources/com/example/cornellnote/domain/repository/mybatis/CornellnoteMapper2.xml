@@ -74,4 +74,20 @@
 			WHERE out_id = #{outId};
 		</delete>
 		
+		<!-- アウトプット「検索結果」画面表示用（「タイトル」と「要約」と「見出し」と「内容」から検索） -->
+		<select id="outputSearch" parameterType="com.example.cornellnote.domain.model.Output" resultMap="Output">
+			SELECT	  outputs.out_id, users.user_name, outputs.out_date, outputs.out_title, outputs.out_summary, contents.cont_caption as content_cont_caption, contents.cont_content as content_cont_content
+			FROM	  outputs
+			LEFT JOIN contents
+			ON		  outputs.out_id = contents.out_id
+			LEFT JOIN users
+			ON		  outputs.user_id = users.user_id
+			WHERE	  (users.user_id = #{userId})
+			AND BINARY (outputs.out_title LIKE CONCAT('%', #{searchName}, '%')
+			OR BINARY outputs.out_summary LIKE CONCAT('%', #{searchName}, '%')
+			OR BINARY contents.cont_caption LIKE CONCAT('%', #{searchName}, '%')
+			OR BINARY contents.cont_content LIKE CONCAT('%', #{searchName}, '%'))
+			ORDER BY  outputs.out_id DESC;
+		</select>
+		
 </mapper>

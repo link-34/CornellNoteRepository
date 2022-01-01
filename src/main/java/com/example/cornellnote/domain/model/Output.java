@@ -15,5 +15,6 @@ public class Output {
 	private String			outTitle;			// タイトル
 	private String			outSummary;			// 要約
 	private List<Content>	contentList;		// 見出しと内容
+	private String			searchName;			// 検索ワード
 
 }

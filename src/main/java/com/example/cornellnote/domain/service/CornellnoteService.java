@@ -90,5 +90,10 @@ public class CornellnoteService {
 		}
 		
 	}
-
+	
+	// アウトプット「検索結果」画面表示用
+	public List<Output> outputSearch(Output output) {
+		return cornellnoteMapper2.outputSearch(output);
+	}
+	
 }

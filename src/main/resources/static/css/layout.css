@@ -18,23 +18,43 @@
         	margin-right: 20px;
         	margin-left: 20px;
         }
+        .icon-search-textbox {
+			width: 28px;
+        	height: 28px;
+        	margin-right: 20px;
+        	margin-left: 20px;
+        	opacity: 0;
+        }
         .index {
-        	margin-top: 1em;
+			margin-top: 1em;
 			margin-bottom: 1em;
 			margin-left: 5em;
 			margin-right: 5em;
         }
         .edit {
-        	margin-top: 1em;
+			margin-top: 1em;
 			margin-bottom: 1em;
 			margin-left: 5em;
 			margin-right: 5em;
         }
 		.entry {
-        	margin-top: 1em;
+			margin-top: 1em;
 			margin-bottom: 1em;
 			margin-left: 5em;
 			margin-right: 5em;
+        }
+        .search {
+			margin-top: 1em;
+			margin-bottom: 1em;
+			margin-left: 5em;
+			margin-right: 5em;
+        }
+        .search-textbox {
+        	background-color: #FFFFFF;
+        }
+        .search-side_top {
+        	font-size: 1.2em;
+        	margin-bottom: 4px;
         }
         .side_top {
         	font-size: 1.2em;

@@ -54,11 +54,12 @@
 					<button class="btn btn-primary mr-5" type="submit" name="update" th:value="${outId}">
 						更新
 					</button>
-					<button class="btn btn-primary ml-5" type="submit" name="delete" th:value="${outId}">
+					<button onclick="return confirm('削除してもよろしいですか？')" class="btn btn-primary ml-5" type="submit" name="delete" th:value="${outId}">
 						削除
 					</button>
+					<input type="hidden">
 				</div>
-					
+				
 			</form>
 		</div>
 	</div>

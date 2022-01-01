@@ -30,4 +30,7 @@ public interface CornellnoteMapper2 {
 	// 「outputsテーブル」へ1件DELETE
 	public boolean outputDelete(int outId);
 	
+	// 「outputsテーブル」と「contentsテーブル」を左外部結合をして複数件SELECT
+	public List<Output> outputSearch(Output output);
+	
 }
