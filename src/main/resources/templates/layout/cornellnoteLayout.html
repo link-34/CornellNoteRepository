@@ -47,7 +47,7 @@
 					
                     <div class="side_bottom">
                     	<img class="icon" th:src="@{/icon/person-fill.svg}">
-                    	<a class="btn btn-outline-primary side_bottom" th:href="@{/login/signup}" th:text="${userName} + ' さん'">
+                    	<a class="btn btn-outline-primary side_bottom" th:href="@{'/login/userDetail/'+ ${userId}}" th:text="${userName} + ' さん'">
                     		テストユーザー さん
                     	</a>
                     </div>

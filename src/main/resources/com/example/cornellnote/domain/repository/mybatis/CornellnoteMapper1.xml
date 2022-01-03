@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.cornellnote.domain.repository.mybatis.CornellnoteMapper1">
+	
+	<!-- マッピング定義(ユーザー) -->
+	<resultMap type="com.example.cornellnote.domain.model.User" id="User">
+		<id		column="user_id"	  property="userId" />
+		<result column="user_name"	  property="userName" />
+		<result column="user_pass"	  property="userPass" />
+		<result column="is_deleted"	  property="isDeleted" />
+		<result column="is_admin"	  property="isAdmin" />
+	</resultMap>
+	
+	<!-- メソッドとの紐付け -->
+		<!-- ユーザー「登録」処理用 -->
+		<insert id="userSignup" parameterType="com.example.cornellnote.domain.model.User">
+			INSERT INTO users (user_name,	user_pass,	 is_deleted, is_admin)
+			VALUES			  (#{userName}, #{userPass}, 0,			 0);
+		</insert>
+	
+		<!-- ユーザー「詳細」画面表示用 -->
+		<select id="userDetail" parameterType="int" resultMap="User">
+			SELECT user_id, user_name, user_pass, is_deleted, is_admin
+			FROM   users
+			WHERE  user_id = #{userId};
+		</select>
+		
+		<!-- ユーザー「詳細」更新処理用 -->
+		<update id="userUpdate" parameterType="com.example.cornellnote.domain.model.User">
+			UPDATE users
+			SET	   user_name = #{userName}, user_pass = #{userPass}
+			WHERE  user_id = #{userId};
+		</update>
+		
+		<!-- ユーザー「詳細」削除削除用(「is_deleted」を「1(削除済み)」にする) -->
+		<update id="userDelete" parameterType="int">
+			UPDATE users
+			SET	   is_deleted = 1
+			WHERE  user_id = #{userId};
+		</update>
+		
+</mapper>
