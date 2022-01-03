@@ -43,10 +43,13 @@ public class CornellnoteController {
 		model.addAttribute("userName", userName);
 		// 現在のログインユーザーのユーザーIDを取得
 		int registerUserId = cornellnoteService.registerUserId(userName);
+		// 「userId」をModelに登録(ユーザー詳細画面の表示に使用するため)
+		model.addAttribute("userId", registerUserId);
 		
 		// アウトプット一覧の生成
 		// 「Output」は、「Content」型の要素を格納した【contentList】を含む
 		List<Output> outList = cornellnoteService.outputList(registerUserId);
+		
 		model.addAttribute("outList", outList);
 
 		return "layout/cornellnoteLayout";
@@ -119,9 +122,9 @@ public class CornellnoteController {
 		// 登録処理
 		boolean outputRegisterResult = cornellnoteService.outputRegister(output, contentList);
 		if(outputRegisterResult==true) {
-			System.out.println("登録成功！");
+			System.out.println("アウトプットの登録成功！");
 		} else if(outputRegisterResult==false) {
-			System.out.println("登録失敗…");
+			System.out.println("アウトプットの登録失敗…");
 		}
 		
 		return "redirect:/cornellnote/index";
@@ -216,9 +219,9 @@ public class CornellnoteController {
 		// 更新処理
 		boolean outputUpdateResult = cornellnoteService.outputUpdate(output, contentList);
 		if(outputUpdateResult==true) {
-			System.out.println("更新成功！");
+			System.out.println("アウトプットの更新成功！");
 		} else if(outputUpdateResult==false) {
-			System.out.println("更新失敗…");
+			System.out.println("アウトプットの更新失敗…");
 		}
 		
 		return "redirect:/cornellnote/index";
@@ -232,9 +235,9 @@ public class CornellnoteController {
 		// 削除処理
 		boolean outputDeleteResult = cornellnoteService.outputDelete(outId);
 		if(outputDeleteResult==true) {
-			System.out.println("削除成功！");
+			System.out.println("アウトプットの削除成功！");
 		} else if(outputDeleteResult==false) {
-			System.out.println("削除失敗…");
+			System.out.println("アウトプットの削除失敗…");
 		}
 		
 		return "redirect:/cornellnote/index";
