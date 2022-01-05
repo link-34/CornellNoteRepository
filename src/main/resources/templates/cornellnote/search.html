@@ -8,19 +8,22 @@
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
 	<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
 	
+	<!-- CSSの設定 -->
+	<link th:href="@{/css/layout.css}" rel="stylesheet"></link>
+	
 </head>
 <body>
 	<div th:fragment="search_contents">
 		<div class="search text-center">
 			<h2 th:text="'「' + ${searchName} + '」の検索結果'"></h2>
 			<br>
-			<table class="table table-dark table-bordered table-hover table-striped"  th:each="search : ${searchResultList}">
+			<table class="table table-light table-bordered table-striped"  th:each="search : ${searchResultList}">
 				<tr>
 					<td class="text-left" th:text="${#dates.format(search.outDate, 'yyyy/MM/dd')} + ' にアウトプット'">日付</td>
 				</tr>
 				<tr>
 					<td class="text-left">
-						<a class="btn btn-outline-light" th:text="${search.outTitle}" th:href="@{'/cornellnote/edit/' + ${search.outId}}">
+						<a class="btn btn-outline-primary" th:text="${search.outTitle}" th:href="@{'/cornellnote/edit/' + ${search.outId}}">
 							タイトル
 						</a>
 					</td>

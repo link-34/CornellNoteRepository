@@ -8,6 +8,9 @@
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
 	<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
 	
+	<!-- CSSの設定 -->
+	<link th:href="@{/css/layout.css}" rel="stylesheet"></link>
+	
 	<title>ユーザー詳細</title>
 </head>
 <body>
@@ -15,10 +18,14 @@
 	<div class="row">
 		<div class="col-sm-4"></div>
 		<div class="col-sm-4">
-			<div class="page-header text-center">
-				<h1>ユーザー詳細</h1>
+			<br>
+			<div class="text-center">
+				<img class="logo" th:src="@{/image/title_logo.png}">
 			</div>
 			<br>
+			<div class="page-header text-center">
+				<h2>ユーザー詳細</h2>
+			</div>
 			<form method="post" th:action="@{/login/userDetail}" th:object="${userForm}">
 				<ul>
 					<li th:each="error : ${#fields.detailedErrors()}">

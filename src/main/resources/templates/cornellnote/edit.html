@@ -8,6 +8,9 @@
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
 	<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
 	
+	<!-- CSSの設定 -->
+	<link th:href="@{/css/layout.css}" rel="stylesheet"></link>
+	
 </head>
 <body>
 	<div th:fragment="edit_contents">
@@ -16,35 +19,31 @@
 			
 			<form  method="post" th:action="@{/cornellnote/edit}" th:object="${outputForm}">
 				
-				<br>
 				<!-- エラー内容の表示-->
 				<ul>
 					<li th:each="error : ${#fields.detailedErrors()}">
 						<span class="text-danger" th:text="${error.message}">Error message</span>
 					</li>
 				</ul>
-				<br>
 					
 				タイトル
 				<input type="text" class="form-control" size="100" th:field="*{outTitle}">
 				<br>
-				
 				見出し／内容
 				<br>
 				<div class="form-inline">
-					<textarea rows="3" cols="50" class="form-control caption" th:field="*{contCaption1}"></textarea>
-					<textarea rows="3" cols="50" class="form-control"		  th:field="*{contContent1}"></textarea>
+					<textarea rows="4" cols="39" class="form-control caption" th:field="*{contCaption1}"></textarea>
+					<textarea rows="4" cols="79" class="form-control"		  th:field="*{contContent1}"></textarea>
 				</div>
 				<div class="form-inline">	
-					<textarea rows="3" cols="50" class="form-control caption" th:field="*{contCaption2}"></textarea>
-					<textarea rows="3" cols="50" class="form-control" 		  th:field="*{contContent2}"></textarea>
+					<textarea rows="4" cols="39" class="form-control caption" th:field="*{contCaption2}"></textarea>
+					<textarea rows="4" cols="79" class="form-control" 		  th:field="*{contContent2}"></textarea>
 				</div>
 				<div class="form-inline">	
-					<textarea rows="3" cols="50" class="form-control caption" th:field="*{contCaption3}"></textarea>
-					<textarea rows="3" cols="50" class="form-control" 		  th:field="*{contContent3}"></textarea>
+					<textarea rows="4" cols="39" class="form-control caption" th:field="*{contCaption3}"></textarea>
+					<textarea rows="4" cols="79" class="form-control" 		  th:field="*{contContent3}"></textarea>
 				</div>
 				<br>
-					
 				要約 (140字まで／箇条書きを推奨)
 				<textarea rows="3" cols="100" class="form-control" th:field="*{outSummary}"></textarea>
 				<br>

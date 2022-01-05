@@ -62,6 +62,11 @@ public class CornellnoteController {
 		// コンテンツ部分にアウトプット「登録」画面を表示するための文字列を登録
 		model.addAttribute("contents", "cornellnote/entry :: entry_contents");
 		
+		// 現在のログインユーザー名をSpringセキュリティで取得
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String userName = auth.getName();
+		model.addAttribute("userName", userName);
+		
 		return "layout/cornellnoteLayout";
 	}
 	
@@ -257,6 +262,8 @@ public class CornellnoteController {
 		model.addAttribute("userName", userName);
 		// 現在のログインユーザーのユーザーIDを取得
 		int registerUserId = cornellnoteService.registerUserId(userName);
+		// 「userId」をModelに登録(ユーザー詳細画面の表示に使用するため)
+		model.addAttribute("userId", registerUserId);
 		
 		// 検索ワードをModelへの登録 (検索窓へ検索文字を表示のため)
 		model.addAttribute("searchName", searchName);

@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+		
         .body_all {
             background-color: #ADEBFF;
         }
@@ -50,6 +50,7 @@
 			margin-right: 5em;
         }
         .search-textbox {
+        	margin-bottom: 4px;
         	background-color: #FFFFFF;
         }
         .search-side_top {
@@ -73,5 +74,5 @@
         	color: #FFFFFF;
         }
         .caption {
-        	margin: 10px;
+        	margin: 5px;
         }

@@ -16,7 +16,7 @@
 <body class="body_all">
     <div class="container-fuild">
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-md-3">
                 <div class="side">
                     <br>
                     <div class="text-center">
@@ -33,10 +33,10 @@
 					
                     <form class="side_top" method="get" th:action="@{/cornellnote/search}">
                     	<img class="icon-search-textbox" th:src="@{/icon/search.svg}">
-						<input type="text" class="search-side_top search-textbox mr-1" name="searchName" th:value="${searchName}">
+						<input type="text" class="search-side_top search-textbox" name="searchName" th:value="${searchName}">
 						<br>
 						<img class="icon" th:src="@{/icon/search.svg}">
-						<button type="submit" class="side_top side_top_search btn btn-primary" name="search">
+						<button type="submit" class="side_top search-side_top btn btn-primary" name="search">
 							検索
 						</button>
 					</form>
@@ -58,7 +58,7 @@
 						</div>
 					</form>
                 </div>
-            </div>
+			</div>
             <div class="col-sm-9">
             	<!-- メインコンテンツ -->
 				<div th:include="__${contents}__"></div>
