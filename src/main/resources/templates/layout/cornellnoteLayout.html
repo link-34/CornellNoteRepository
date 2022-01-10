@@ -21,47 +21,47 @@
                     <br>
                     <div class="text-center">
                     	<a th:href="@{/cornellnote/index}"><img class="logo" th:src="@{/image/title_logo.png}"></a>
-					</div>
-					
-					<br>
-					<div class="side_top">
-						<img class="icon" th:src="@{/icon/pencil-square.svg}">
-						<a class="btn btn-outline-primary side_top" th:href="@{/cornellnote/entry}">
-							アウトプット【投稿】
-						</a>
-					</div>
-					
-                    <form class="side_top" method="get" th:action="@{/cornellnote/search}">
-                    	<img class="icon-search-textbox" th:src="@{/icon/search.svg}">
-						<input type="text" class="search-side_top search-textbox" name="searchName" th:value="${searchName}">
-						<br>
-						<img class="icon" th:src="@{/icon/search.svg}">
-						<button type="submit" class="side_top search-side_top btn btn-primary" name="search">
-							検索
-						</button>
-					</form>
-                    
-					<br>
-					<br>
-					<br>
-					
-                    <div class="side_bottom">
-                    	<img class="icon" th:src="@{/icon/person-fill.svg}">
-                    	<a class="btn btn-outline-primary side_bottom" th:href="@{'/login/userDetail/'+ ${userId}}" th:text="${userName} + ' さん'">
-                    		テストユーザー さん
-                    	</a>
                     </div>
-					<form method="post" th:action="@{/login/logout}">
-						<div class="side_bottom">
-							<img class="icon" th:src="@{/icon/box-arrow-right.svg}">
-							<button class="btn btn-outline-primary logout-btn side_bottom" type="submit">ログアウト</button>
-						</div>
-					</form>
+                    
+                    <br>
+                    <div class="side_top">
+                    <img class="icon" th:src="@{/icon/pencil-square.svg}">
+                        <a class="btn btn-outline-primary side_top" th:href="@{/cornellnote/entry}">
+                            アウトプット【投稿】
+                        </a>
+                    </div>
+                    
+                    <form class="side_top" method="get" th:action="@{/cornellnote/search}">
+                        <img class="icon-search-textbox" th:src="@{/icon/search.svg}">
+                        <input type="text" class="search-side_top search-textbox" name="searchName" th:value="${searchName}">
+                        <br>
+                        <img class="icon" th:src="@{/icon/search.svg}">
+                        <button type="submit" class="side_top search-side_top btn btn-primary" name="search">
+                            検索
+                        </button>
+                    </form>
+                    
+                    <br>
+                    <br>
+                    <br>
+                    
+                    <div class="side_bottom">
+                        <img class="icon" th:src="@{/icon/person-fill.svg}">
+                        <a class="btn btn-outline-primary side_bottom" th:href="@{'/login/userDetail/'+ ${userId}}" th:text="${userName} + ' さん'">
+                            テストユーザー さん
+                        </a>
+                    </div>
+                <form method="post" th:action="@{/login/logout}">
+                        <div class="side_bottom">
+                            <img class="icon" th:src="@{/icon/box-arrow-right.svg}">
+                            <button class="btn btn-outline-primary logout-btn side_bottom" type="submit">ログアウト</button>
+                        </div>
+                    </form>
                 </div>
-			</div>
+            </div>
             <div class="col-sm-9">
-            	<!-- メインコンテンツ -->
-				<div th:include="__${contents}__"></div>
+                <!-- メインコンテンツ -->
+                <div th:include="__${contents}__"></div>
             </div>
         </div>
     </div>

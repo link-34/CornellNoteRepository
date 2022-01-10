@@ -2,71 +2,71 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.cornellnote.domain.repository.mybatis.CornellnoteMapper3">
-	<!-- メソッドとの紐付け -->
-		<!-- アウトプット「登録」処理用(「contentsテーブル」) -->
-		<insert id="outputRegister" parameterType="java.util.List">
-			INSERT INTO contents(out_id, cont_caption, cont_content)
-				   VALUES			   
-						<foreach collection="contentList" item="list" separator=",">
-							(
-								#{list.outId},
-								#{list.contCaption},
-								#{list.contContent}
-							)
-						</foreach>;
-		</insert>
-		
-		<!-- アウトプット「更新」処理用(「contentsテーブル」) -->
-		<!-- <update id="outputUpdate" parameterType="java.util.List">
-			UPDATE contents
-			SET
-				cont_caption = ELT(field(out_id,
-					<foreach collection="contentList" item="list" separator=",">
-						#{list.outId}
-					</foreach>
-				),
-					<foreach collection="contentList" item="list" separator=",">
-				 		#{list.contCaption}
-					</foreach>
-				),
-				cont_content = ELT(field(out_id,
-					<foreach collection="contentList" item="list" separator=",">
-						#{list.outId}
-					</foreach>
-				),
-					<foreach collection="contentList" item="list" separator=",">
-				 		#{list.contContent}
-				 	</foreach>
-				)
-				WHERE out_id IN (
-					<foreach collection="contentList" item="list" separator=",">
-						#{list.outId}
-					</foreach>
-				);
-		</update> -->
-		
-		<!-- アウトプット「更新」処理用(「contentsテーブル」) -->
-		<delete id="outputUpdateDelete" parameterType="com.example.cornellnote.domain.model.Output">
-			DELETE FROM contents
-			WHERE out_id = #{outId};
-		</delete>
-		
-		<insert id="outputUpdateInsert" parameterType="java.util.List">
-			INSERT INTO contents(out_id, cont_caption, cont_content)
-				   VALUES			   
-						<foreach collection="contentList" item="list" separator=",">
-							(
-								#{list.outId},
-								#{list.contCaption},
-								#{list.contContent}
-							)
-						</foreach>;
-		</insert>
-		
-		<!-- アウトプット「削除」処理用(「contentsテーブル」) -->
-		<delete id="outputDelete" parameterType="int">
-			DELETE FROM contents
-			WHERE out_id = #{outId};
-		</delete>
-		
+    <!-- メソッドとの紐付け -->
+        <!-- アウトプット「登録」処理用(「contentsテーブル」) -->
+        <insert id="outputRegister" parameterType="java.util.List">
+            INSERT INTO contents(out_id, cont_caption, cont_content)
+                    VALUES			   
+                        <foreach collection="contentList" item="list" separator=",">
+                            (
+                                #{list.outId},
+                                #{list.contCaption},
+                                #{list.contContent}
+                            )
+                        </foreach>;
+        </insert>
+
+        <!-- アウトプット「更新」処理用(「contentsテーブル」) -->
+        <!-- <update id="outputUpdate" parameterType="java.util.List">
+            UPDATE contents
+            SET
+                cont_caption = ELT(field(out_id,
+                    <foreach collection="contentList" item="list" separator=",">
+                        #{list.outId}
+                    </foreach>
+                ),
+                    <foreach collection="contentList" item="list" separator=",">
+                        #{list.contCaption}
+                    </foreach>
+                ),
+                cont_content = ELT(field(out_id,
+                    <foreach collection="contentList" item="list" separator=",">
+                        #{list.outId}
+                    </foreach>
+                ),
+                    <foreach collection="contentList" item="list" separator=",">
+                        #{list.contContent}
+                    </foreach>
+                )
+                WHERE out_id IN (
+                    <foreach collection="contentList" item="list" separator=",">
+                        #{list.outId}
+                    </foreach>
+                );
+        </update> -->
+
+        <!-- アウトプット「更新」処理用(「contentsテーブル」) -->
+        <delete id="outputUpdateDelete" parameterType="com.example.cornellnote.domain.model.Output">
+            DELETE FROM contents
+            WHERE out_id = #{outId};
+        </delete>
+
+        <insert id="outputUpdateInsert" parameterType="java.util.List">
+            INSERT INTO contents(out_id, cont_caption, cont_content)
+                    VALUES			   
+                        <foreach collection="contentList" item="list" separator=",">
+                            (
+                                #{list.outId},
+                                #{list.contCaption},
+                                #{list.contContent}
+                            )
+                        </foreach>;
+        </insert>
+
+        <!-- アウトプット「削除」処理用(「contentsテーブル」) -->
+        <delete id="outputDelete" parameterType="int">
+            DELETE FROM contents
+            WHERE out_id = #{outId};
+        </delete>
+
 </mapper>
