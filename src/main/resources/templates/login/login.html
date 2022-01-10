@@ -15,27 +15,27 @@
 </head>
 <body class="text-center">
 
-	<br>
-	<img class="logo" th:src="@{/image/title_logo.png}">
-	<br>
-	<br>
-	<h2>ログイン</h2>
-	<br>
-	<form method="post" th:action="@{/cornellnote/index}" class=" text-center">
-
-		<p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" class="text-danger">
-			ログインエラーメッセージ
-		</p>
-
-		<label>ユーザー名</label> <input type="text" name="userName"><br>
-		<br>
-		<label>パスワード</label> <input type="password" name="userPass"><br>
-		<br>
-		<button class="btn btn-primary" type="submit">ログイン</button>
-	</form>
-	
-	<br>
-	<a th:href="@{/login/signup}">ユーザーの新規登録画面へ</a>
-
+    <br>
+    <img class="logo" th:src="@{/image/title_logo.png}">
+    <br>
+    <br>
+    <h2>ログイン</h2>
+    <br>
+    <form method="post" th:action="@{/cornellnote/index}" class=" text-center">
+        
+        <p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" class="text-danger">
+            ログインエラーメッセージ
+        </p>
+        
+        <label>ユーザー名</label> <input type="text" name="userName"><br>
+        <br>
+        <label>パスワード</label> <input type="password" name="userPass"><br>
+        <br>
+        <button class="btn btn-primary" type="submit">ログイン</button>
+    </form>
+    
+    <br>
+    <a th:href="@{/login/signup}">ユーザーの新規登録画面へ</a>
+    
 </body>
 </html>

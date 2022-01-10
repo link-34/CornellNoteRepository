@@ -3,91 +3,91 @@
 
 <mapper namespace="com.example.cornellnote.domain.repository.mybatis.CornellnoteMapper2">
 
-	<!-- マッピング定義(アウトプット) -->
-	<resultMap type="com.example.cornellnote.domain.model.Output" id="Output">
-		<id		column="out_id"		  property="outId" />
-		<result column="user_name"	  property="userName" />	<!-- 「usersテーブル」 -->
-		<result column="out_date"	  property="outDate" />
-		<result column="out_title"	  property="outTitle" />
-		<result column="out_summary"  property="outSummary" />
-		<collection property ="contentList" resultMap ="Content" columnPrefix ="content_"/>
-	</resultMap>
+    <!-- マッピング定義(アウトプット) -->
+    <resultMap type="com.example.cornellnote.domain.model.Output" id="Output">
+        <id		column="out_id"		  property="outId" />
+        <result column="user_name"	  property="userName" />	<!-- 「usersテーブル」 -->
+        <result column="out_date"	  property="outDate" />
+        <result column="out_title"	  property="outTitle" />
+        <result column="out_summary"  property="outSummary" />
+        <collection property ="contentList" resultMap ="Content" columnPrefix ="content_"/>
+    </resultMap>
 
-	<!-- マッピング定義(コンテンツ(内容)) -->
-	<resultMap type="com.example.cornellnote.domain.model.Content" id="Content">
-		<id		column="out_id"		  property="outId" />
-		<result column="cont_caption" property="contCaption" />
-		<result column="cont_content" property="contContent" />
-	</resultMap>
+    <!-- マッピング定義(コンテンツ(内容)) -->
+    <resultMap type="com.example.cornellnote.domain.model.Content" id="Content">
+        <id		column="out_id"		  property="outId" />
+        <result column="cont_caption" property="contCaption" />
+        <result column="cont_content" property="contContent" />
+    </resultMap>
 
-	<!-- メソッドとの紐付け -->
-		<!-- アウトプット一覧画面表示用 -->
-		<select id="outputList" parameterType="int" resultMap="Output">
-			SELECT	  outputs.out_id, users.user_name, outputs.out_date, outputs.out_title, outputs.out_summary, contents.cont_caption as content_cont_caption, contents.cont_content as content_cont_content
-			FROM	  outputs
-			LEFT JOIN contents
-			ON		  outputs.out_id = contents.out_id
-			LEFT JOIN users
-			ON		  outputs.user_id = users.user_id
-			WHERE	  users.user_id = #{registerUserId}
-			ORDER BY  outputs.out_id DESC;
-		</select>
-		
-		<!-- アウトプット「更新」画面表示用 -->
-		<select id="outputEdit" resultMap="Output">
-			SELECT	  outputs.out_id, outputs.out_title, outputs.out_summary, contents.cont_caption as content_cont_caption, contents.cont_content as content_cont_content
-			FROM	  outputs
-			LEFT JOIN contents
-			ON		  outputs.out_id = contents.out_id
-			WHERE	  outputs.out_id = #{outId};
-		</select>
-		
-		<!-- アウトプット「登録」処理に使用する「userId」取得用 -->
-		<select id="registerUserId" parameterType="string" resultType="int">
-			SELECT	  user_id
-			FROM	  users
-			WHERE	  users.user_name = #{userName};
-		</select>
-		
-		<!-- アウトプット「登録」処理に使用する最新の「outId」取得用 -->
-		<select id="registerOutId" resultType="int">
-			SELECT	  MAX(out_id)
-			FROM	  outputs;
-		</select>
-		
-		<!-- アウトプット「登録」処理用(「outputsテーブル」) -->
-		<insert id="outputRegister" parameterType="com.example.cornellnote.domain.model.Output">
-			INSERT INTO outputs (out_id,   user_id,   out_date,   out_title,   out_summary)
-			VALUES			    (#{outId}, #{userId}, #{outDate}, #{outTitle}, #{outSummary});
-		</insert>
-		
-		<!-- アウトプット「更新」処理用(「outputsテーブル」) -->
-		<update id="outputUpdate" parameterType="com.example.cornellnote.domain.model.Output">
-			UPDATE	  outputs
-			SET		  out_title = #{outTitle}, out_summary = #{outSummary}
-			WHERE	  out_id = #{outId};
-		</update>
-		
-		<!-- アウトプット「削除」処理用(「outputsテーブル」) -->
-		<delete id="outputDelete" parameterType="int">
-			DELETE FROM outputs
-			WHERE out_id = #{outId};
-		</delete>
-		
-		<!-- アウトプット「検索結果」画面表示用（「タイトル」と「要約」と「見出し」と「内容」から検索） -->
-		<select id="outputSearch" parameterType="com.example.cornellnote.domain.model.Output" resultMap="Output">
-			SELECT	  outputs.out_id, users.user_name, outputs.out_date, outputs.out_title, outputs.out_summary, contents.cont_caption as content_cont_caption, contents.cont_content as content_cont_content
-			FROM	  outputs
-			LEFT JOIN contents
-			ON		  outputs.out_id = contents.out_id
-			LEFT JOIN users
-			ON		  outputs.user_id = users.user_id
-			WHERE	  (users.user_id = #{userId})
-			AND BINARY (outputs.out_title LIKE CONCAT('%', #{searchName}, '%')
-			OR BINARY outputs.out_summary LIKE CONCAT('%', #{searchName}, '%')
-			OR BINARY contents.cont_caption LIKE CONCAT('%', #{searchName}, '%')
-			OR BINARY contents.cont_content LIKE CONCAT('%', #{searchName}, '%'))
-			ORDER BY  outputs.out_id DESC;
-		</select>
-		
+    <!-- メソッドとの紐付け -->
+        <!-- アウトプット一覧画面表示用 -->
+        <select id="outputList" parameterType="int" resultMap="Output">
+            SELECT	  outputs.out_id, users.user_name, outputs.out_date, outputs.out_title, outputs.out_summary, contents.cont_caption as content_cont_caption, contents.cont_content as content_cont_content
+            FROM	  outputs
+            LEFT JOIN contents
+            ON		  outputs.out_id = contents.out_id
+            LEFT JOIN users
+            ON		  outputs.user_id = users.user_id
+            WHERE	  users.user_id = #{registerUserId}
+            ORDER BY  outputs.out_id DESC;
+        </select>
+
+        <!-- アウトプット「更新」画面表示用 -->
+        <select id="outputEdit" resultMap="Output">
+            SELECT	  outputs.out_id, outputs.out_title, outputs.out_summary, contents.cont_caption as content_cont_caption, contents.cont_content as content_cont_content
+            FROM	  outputs
+            LEFT JOIN contents
+            ON		  outputs.out_id = contents.out_id
+            WHERE	  outputs.out_id = #{outId};
+        </select>
+
+        <!-- アウトプット「登録」処理に使用する「userId」取得用 -->
+        <select id="registerUserId" parameterType="string" resultType="int">
+            SELECT	  user_id
+            FROM	  users
+            WHERE	  users.user_name = #{userName};
+        </select>
+
+        <!-- アウトプット「登録」処理に使用する最新の「outId」取得用 -->
+        <select id="registerOutId" resultType="int">
+            SELECT	  MAX(out_id)
+            FROM	  outputs;
+        </select>
+
+        <!-- アウトプット「登録」処理用(「outputsテーブル」) -->
+        <insert id="outputRegister" parameterType="com.example.cornellnote.domain.model.Output">
+            INSERT INTO outputs (out_id,   user_id,   out_date,   out_title,   out_summary)
+            VALUES			    (#{outId}, #{userId}, #{outDate}, #{outTitle}, #{outSummary});
+        </insert>
+
+        <!-- アウトプット「更新」処理用(「outputsテーブル」) -->
+        <update id="outputUpdate" parameterType="com.example.cornellnote.domain.model.Output">
+            UPDATE	  outputs
+            SET		  out_title = #{outTitle}, out_summary = #{outSummary}
+            WHERE	  out_id = #{outId};
+        </update>
+
+        <!-- アウトプット「削除」処理用(「outputsテーブル」) -->
+        <delete id="outputDelete" parameterType="int">
+            DELETE FROM outputs
+            WHERE out_id = #{outId};
+        </delete>
+
+        <!-- アウトプット「検索結果」画面表示用（「タイトル」と「要約」と「見出し」と「内容」から検索） -->
+        <select id="outputSearch" parameterType="com.example.cornellnote.domain.model.Output" resultMap="Output">
+            SELECT	  outputs.out_id, users.user_name, outputs.out_date, outputs.out_title, outputs.out_summary, contents.cont_caption as content_cont_caption, contents.cont_content as content_cont_content
+            FROM	  outputs
+            LEFT JOIN contents
+            ON		  outputs.out_id = contents.out_id
+            LEFT JOIN users
+            ON		  outputs.user_id = users.user_id
+            WHERE	  (users.user_id = #{userId})
+            AND BINARY (outputs.out_title LIKE CONCAT('%', #{searchName}, '%')
+            OR BINARY outputs.out_summary LIKE CONCAT('%', #{searchName}, '%')
+            OR BINARY contents.cont_caption LIKE CONCAT('%', #{searchName}, '%')
+            OR BINARY contents.cont_content LIKE CONCAT('%', #{searchName}, '%'))
+            ORDER BY  outputs.out_id DESC;
+        </select>
+
 </mapper>

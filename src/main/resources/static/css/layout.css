@@ -26,53 +26,53 @@
         	opacity: 0;
         }
         .index {
-			margin-top: 1em;
-			margin-bottom: 1em;
-			margin-left: 5em;
-			margin-right: 5em;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            margin-left: 5em;
+            margin-right: 5em;
         }
         .edit {
-			margin-top: 1em;
-			margin-bottom: 1em;
-			margin-left: 5em;
-			margin-right: 5em;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            margin-left: 5em;
+            margin-right: 5em;
         }
-		.entry {
-			margin-top: 1em;
-			margin-bottom: 1em;
-			margin-left: 5em;
-			margin-right: 5em;
+        .entry {
+            margin-top: 1em;
+            margin-bottom: 1em;
+            margin-left: 5em;
+            margin-right: 5em;
         }
         .search {
-			margin-top: 1em;
-			margin-bottom: 1em;
-			margin-left: 5em;
-			margin-right: 5em;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            margin-left: 5em;
+            margin-right: 5em;
         }
         .search-textbox {
-        	margin-bottom: 4px;
-        	background-color: #FFFFFF;
+            margin-bottom: 4px;
+            background-color: #FFFFFF;
         }
         .search-side_top {
-        	font-size: 1.2em;
-        	margin-bottom: 4px;
+            font-size: 1.2em;
+            margin-bottom: 4px;
         }
         .side_top {
-        	font-size: 1.2em;
-        	color: #FFFFFF;
-        	margin-bottom: 4px;
-        	background-color: #33B4FF;
+            font-size: 1.2em;
+            color: #FFFFFF;
+            margin-bottom: 4px;
+            background-color: #33B4FF;
         }
         .side_bottom {
-			font-size: 1.2em;
-			color: #FFFFFF;
-			margin-bottom: 4px;
-        	background-color: #005A8F;
+            font-size: 1.2em;
+            color: #FFFFFF;
+            margin-bottom: 4px;
+            background-color: #005A8F;
         }
         .logout-btn {
-        	font-size: 1em;
-        	color: #FFFFFF;
+            font-size: 1em;
+            color: #FFFFFF;
         }
         .caption {
-        	margin: 5px;
+            margin: 5px;
         }

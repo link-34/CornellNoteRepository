@@ -15,53 +15,53 @@
 </head>
 <body>
 <div class="container-fuild">
-	<div class="row">
-		<div class="col-sm-4"></div>
-		<div class="col-sm-4">
-			<br>
-			<div class="text-center">
-				<img class="logo" th:src="@{/image/title_logo.png}">
-			</div>
-			<br>
-			<div class="page-header text-center">
-				<h2>ユーザー詳細</h2>
-			</div>
-			<form method="post" th:action="@{/login/userDetail}" th:object="${userForm}">
-				<ul>
-					<li th:each="error : ${#fields.detailedErrors()}">
-						<span class="text-danger" th:text="${error.message}">Error message</span>
-					</li>
-				</ul>
-				<table class="table table-bordered table-hover">
-					<tr>
-						<th class="active">ユーザー名</th>
-						<td>
-							<div class="form-group">
-								<input type="text" class="form-control" th:field="*{userName}">
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<th class="active">パスワード</th>
-						<td>
-							<div class="form-group">
-								<input type="text" class="form-control" th:field="*{userPass}">
-							</div>
-						</td>
-					</tr>
-				</table>
-				<div class=" text-center">
-					<button class="btn btn-primary mr-5" type="submit" name="update" th:value="${userId}">
-						更新
-					</button>
-					<button onclick="return confirm('削除してもよろしいですか？')" class="btn btn-primary ml-5" type="submit" name="delete" th:value="${userId}">
-						削除
-					</button>
-				</div>
-			</form>
-		</div>
-		<div class="col-sm-4"></div>
-	</div>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <br>
+            <div class="text-center">
+                <img class="logo" th:src="@{/image/title_logo.png}">
+            </div>
+            <br>
+            <div class="page-header text-center">
+                <h2>ユーザー詳細</h2>
+            </div>
+            <form method="post" th:action="@{/login/userDetail}" th:object="${userForm}">
+                <ul>
+                    <li th:each="error : ${#fields.detailedErrors()}">
+                        <span class="text-danger" th:text="${error.message}">Error message</span>
+                    </li>
+                </ul>
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th class="active">ユーザー名</th>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" th:field="*{userName}">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="active">パスワード</th>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" th:field="*{userPass}">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class=" text-center">
+                    <button class="btn btn-primary mr-5" type="submit" name="update" th:value="${userId}">
+                        更新
+                    </button>
+                    <button onclick="return confirm('削除してもよろしいですか？')" class="btn btn-primary ml-5" type="submit" name="delete" th:value="${userId}">
+                        削除
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
 </div>
 </body>
 </html>
