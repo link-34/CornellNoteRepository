@@ -1,5 +1,3 @@
-// window.alert('test');
-
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('delete').addEventListener('click', function(e) {
         if(!window.confirm('本当に削除しますか？')) {
