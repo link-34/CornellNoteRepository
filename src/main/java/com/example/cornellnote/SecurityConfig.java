@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		// 静的リソースへのアクセスには、セキュリティを適用しない
-		web.ignoring().antMatchers("/webjars/**", "/css/**", "/icon/**", "/image/**");
+		web.ignoring().antMatchers("/webjars/**", "/css/**", "/icon/**", "/image/**", "/js/**");
 	}
 	
 	@Override
@@ -57,27 +57,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// ログイン不要ページの設定
 		http.authorizeRequests()
-			.antMatchers("/webjars/**").permitAll()			// webjarsへアクセス許可
-	        .antMatchers("/css/**").permitAll() 			// cssへアクセス許可
-	        .antMatchers("/icon/**").permitAll()			// iconへアクセス許可
-	        .antMatchers("/image/**").permitAll()			// imageへアクセス許可
-	        .antMatchers("/login/index").permitAll() 		// ログインページは直リンクOK
-	        .antMatchers("/login/signup").permitAll() 		// 新規登録ページは直リンクOK
-	        .anyRequest().authenticated(); 					// それ以外は直リンク禁止
+			.antMatchers("/webjars/**").permitAll()            // webjarsへアクセス許可
+	        .antMatchers("/css/**").permitAll()                // cssへアクセス許可
+	        .antMatchers("/icon/**").permitAll()               // iconへアクセス許可
+	        .antMatchers("/image/**").permitAll()              // imageへアクセス許可
+	        .antMatchers("/js/**").permitAll()                 // jsへアクセス許可
+	        .antMatchers("/login/index").permitAll()           // ログインページは直リンクOK
+	        .antMatchers("/login/signup").permitAll()          // 新規登録ページは直リンクOK
+	        .anyRequest().authenticated();                     // それ以外は直リンク禁止
 
 		// ログイン処理
 		http.formLogin()
-			.loginProcessingUrl("/cornellnote/index")		// ログイン処理のパス
-	        .loginPage("/login/index")						// ログインページの指定
-	        .failureUrl("/login/index")						// ログイン失敗時の遷移先
-	        .usernameParameter("userName")					// ログインページのユーザー名
-	        .passwordParameter("userPass")					// ログインページのパスワード
-	        .defaultSuccessUrl("/cornellnote/index", true);	// ログイン成功後の遷移先
+		     .loginProcessingUrl("/cornellnote/index")          // ログイン処理のパス
+		     .loginPage("/login/index")                         // ログインページの指定
+			 .failureUrl("/login/index")                        // ログイン失敗時の遷移先
+			 .usernameParameter("userName")                     // ログインページのユーザー名
+			 .passwordParameter("userPass")                     // ログインページのパスワード
+			 .defaultSuccessUrl("/cornellnote/index", true);    // ログイン成功後の遷移先
 
 		// ログアウト処理
 		http.logout()
-			.logoutUrl("/login/logout")						// ログアウト処理のパス(POST)
-			.logoutSuccessUrl("/login/login");				// ログアウト成功後の遷移先
+			.logoutUrl("/login/logout")                          // ログアウト処理のパス(POST)
+			.logoutSuccessUrl("/login/login");                   // ログアウト成功後の遷移先
 		
 	}
 	

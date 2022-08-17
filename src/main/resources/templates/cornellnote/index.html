@@ -17,21 +17,23 @@
         <div class="index text-center">
             <h2>アウトプット一覧</h2>
             <br>
-            <table class="table table-light table-bordered table-striped"  th:each="out : ${outList}">
-                <tr>
-                    <td class="text-left" th:text="${#dates.format(out.outDate, 'yyyy/MM/dd')} + ' にアウトプット'">日付</td>
-                </tr>
-                <tr>
-                    <td class="text-left">
-                        <a class="btn btn-outline-primary" th:text="${out.outTitle}" th:href="@{'/cornellnote/edit/' + ${out.outId}}">
-                            タイトル
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-left" th:text="${out.outSummary}">要約</td>
-                </tr>
-            </table>
+            <div class="index-pagination">
+                <table class="table table-light table-bordered table-striped"  th:each="out : ${outList}">
+                    <tr>
+                        <td class="text-left" th:text="${#dates.format(out.outDate, 'yyyy/MM/dd')} + ' にアウトプット'">日付</td>
+                    </tr>
+                    <tr>
+                        <td class="text-left">
+                            <a class="btn btn-outline-primary" th:text="${out.outTitle}" th:href="@{'/cornellnote/edit/' + ${out.outId}}">
+                                タイトル
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left" th:text="${out.outSummary}">要約</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </body>
