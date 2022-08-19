@@ -26,7 +26,13 @@
     this.container = $('<nav></nav>').addClass(this.options.containerClass).attr('aria-label','Page navigation');
     this.ul = $('<ul></ul>').addClass(this.options.ulClass);
 
-    this.show(this.startPage);
+    var hash = Number(location.hash.substr(1));
+    if (Number.isInteger(hash) && hash>0 && hash<=this.totalPages){
+      this.currentPage = hash;
+    }
+
+    // this.show(this.startPage);
+    this.show(this.currentPage);
 
     return this;
   };
@@ -51,7 +57,8 @@
       li.addClass(cssClass);
       li.data('pagination-type', type);
       li.data('page', page);
-      li.append(a.html(text));
+      // li.append(a.html(text));
+      li.append(a.html(text).attr('href', '#'+page));
 
       return li;
     },
@@ -200,6 +207,7 @@
 
           _self.currentPage = page;
           _self.show(page);
+          history.pushState('','','#'+page);
         });
       });
     },
