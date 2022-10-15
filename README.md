@@ -1,0 +1,2 @@
+# CornellNoteRepository
+コーネル式学習ノートアプリ用のリモートリポジトリ。
