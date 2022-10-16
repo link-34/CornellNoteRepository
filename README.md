@@ -14,7 +14,8 @@
 - Spring Security
 - Mybatis 2.2.0
 - MySQL 8.0.30
-- HTML/CSS
+- HTML / CSS
+- JavaScript
 - Thymeleaf
 - Bootstrap 4.6.0
 - JQuery 3.5.1
